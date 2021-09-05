@@ -1,0 +1,246 @@
+<div class="modal-header">
+    <h6 class="modal-title">Add New Lead</h6>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="saveLeadForm">
+        <ngb-alert *ngIf="alert.message" [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">First Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="firstName" class="form-control" pattern=".{3,}" required autofocus>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Last Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="lastName" class="form-control" pattern=".{3,}" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Email</label>
+                    <div class="col-sm-9">
+                        <input type="email" formControlName="email" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Phone Number</label>
+                    <div class="col-sm-9">
+                        <international-phone-number formControlName="phone" [maxlength]="15" [defaultCountry]="'in'" [required]="true"></international-phone-number>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Company</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="company" class="form-control" pattern=".{3,}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Website</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="website" class="form-control" pattern=".{7,}" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group form-check">
+                    <input type="checkbox" formControlName="doNotSMS" class="form-check-input" id="doNotSMS">
+                    <label class="form-check-label" for="doNotSMS">Do Not SMS</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group form-check">
+                    <input type="checkbox" formControlName="doNotTrack" class="form-check-input" id="doNotTrack">
+                    <label class="form-check-label" for="doNotTrack">Do Not Track</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group form-check">
+                    <input type="checkbox" formControlName="doNotEmail" class="form-check-input" id="doNotEmail">
+                    <label class="form-check-label" for="doNotEmail">Do Not Email</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group form-check">
+                    <input type="checkbox" formControlName="doNotCall" class="form-check-input" id="doNotCall">
+                    <label class="form-check-label" for="doNotCall">Do Not Call</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Lead Source</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" formControlName="leadSource" required>
+                            <option value="">Select source...</option>
+                            <option *ngFor="let source of leadSources" [ngValue]="source">
+                                {{source.sourceName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Source Campaign</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="sourceCampaign" class="form-control" pattern=".{3,}" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Mobile Number</label>
+                    <div class="col-sm-9">
+                        <international-phone-number formControlName="mobile" [maxlength]="15" [defaultCountry]="'in'" [required]="true"></international-phone-number>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Source Medium</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="sourceMedium" class="form-control" pattern=".{3,}" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Job Title</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="jobTitle" class="form-control" pattern=".{3,}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Lead Stage</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" formControlName="leadStage" required>
+                            <option value="">Select stage...</option>
+                            <option *ngFor="let stage of leadStages" [ngValue]="stage">
+                                {{stage.stageName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Owner</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="owner" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Address</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="address" class="form-control" pattern=".{3,}" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">City</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="city" class="form-control" pattern=".{3,}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">State</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="state" class="form-control" pattern=".{3,}" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Zip</label>
+                    <div class="col-sm-9">
+                        <input type="number" formControlName="zip" class="form-control" pattern=".{4,15}" required>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-6 ">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Country</label>
+                    <div class="col-sm-9 ">
+                        <input type="text" formControlName="country" class="form-control " pattern=".{4,}" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-6 ">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Interested Projects</label>
+                    <div class="col-sm-9">
+                        <ng-select [items]="projects" [multiple]="true" [closeOnSelect]="false" [searchable]="false" bindLabel="projectName" placeholder="Select projects" formControlName="interestedProjects">
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 ">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Notes</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" formControlName="notes" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-6 ">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Interest Requirement</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="interestRequirement" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" [disabled]="loading || !saveLeadForm.valid" (click)="saveAndAddNew(saveLeadForm.value)">Save
+        and Add New</button>
+    <button type="button" class="btn btn-primary" [disabled]="loading || !saveLeadForm.valid" (click)="saveAndClose(saveLeadForm.value)">Save and Close</button>
+    <button type="button" class="btn btn-light light-border" (click)="activeModal.close( 'Cancel click')">Cancel</button>
+</div>

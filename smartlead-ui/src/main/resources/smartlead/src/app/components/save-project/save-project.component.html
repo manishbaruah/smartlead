@@ -1,0 +1,138 @@
+<form [formGroup]="saveProjectForm">
+    <div class="modal-header">
+        <h6 class="modal-title">{{titleAndButtonText}}</h6>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <ngb-alert *ngIf="alert.message" [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
+            <div class="form-group row mb-3">
+                <label class="col-sm-3 col-form-label">Project Name</label>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="projectName" class="form-control" pattern=".{3,}" required autofocus>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <label class="col-sm-3 col-form-label">Project Type</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-5">
+                            <select class="form-control" formControlName="projectType" required>
+                                <option value="">Select type...</option>
+                                <option *ngFor="let pType of projectTypes" [ngValue]="pType"
+                                    [selected]="saveProjectForm.controls.projectType.value.projectTypeId===pType.projectTypeId">
+                                    {{pType.projectTypeName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Project Stage</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" formControlName="projectStage" required>
+                                        <option value="">Select stage...</option>
+                                        <option *ngFor="let pStage of projectStages" [ngValue]="pStage"
+                                            [selected]="saveProjectForm.controls.projectStage.value.projectStageId===pStage.projectStageId">
+                                            {{pStage.projectStageName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                <label class="col-sm-3 col-form-label">Project Location</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-5">
+                            <input type="text" formControlName="projectLocation" class="form-control" pattern=".{3,}" required>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Builder</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" formControlName="builder" required>
+                                        <option value="">Select builder...</option>
+                                        <option *ngFor="let b of builders" [ngValue]="b"
+                                            [selected]="saveProjectForm.controls.builder.value.builderId===b.builderId">
+                                            {{b.builderName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                <div class="col">
+                    <div class="form-group form-inline">
+                        <label class="mr-3">Towers</label>
+                        <input type="number" formControlName="towers" class="form-control short-length-input" pattern=".{1,3}" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group form-inline">
+                        <label class="mr-3">Wings</label>
+                        <input type="number" formControlName="wings" class="form-control short-length-input" pattern=".{1,3}" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group form-inline">
+                        <label class="mr-3">Blocks</label>
+                        <input type="number" formControlName="blocks" class="form-control short-length-input" pattern=".{1,3}" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group form-inline">
+                        <label class="mr-3">Floors</label>
+                        <input type="number" formControlName="floors" class="form-control short-length-input" pattern=".{1,3}" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group form-inline">
+                        <label class="mr-3">Units</label>
+                        <input type="number" formControlName="units" class="form-control short-length-input" pattern=".{1,3}" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                <label class="col-sm-3 col-form-label">Amenities</label>
+                <div class="col-sm-9">
+                    <div *ngFor="let order of getAmenitiesControls(); let i = index" formArrayName="amenities" class="form-check form-check-inline mr-5 mb-4">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" [formControlName]="i">
+                            {{amenities[i].amenityName}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <label class="col-sm-3 col-form-label">Project Description</label>
+                <div class="col-sm-9">
+                    <textarea class="form-control" formControlName="description" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <label class="col-sm-3 col-form-label">Attachment</label>
+                <div class="col-sm-4">
+                    <input type="file" formControlName="attachment" class="form-control-file" (change)="onFileChange($event)">
+                </div>
+                <div class="col-sm-4" *ngIf="brochureName">
+                    <a href="#" title="Download brochure" (click)="downLoadBrochure()">{{brochureName}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light light-border" (click)="activeModal.close('Cancel click')">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="loading || !saveProjectForm.valid" (click)="saveProject(saveProjectForm.value)">{{titleAndButtonText}}</button>
+    </div>
+</form>

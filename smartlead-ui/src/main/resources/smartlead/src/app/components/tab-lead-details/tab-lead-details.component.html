@@ -1,0 +1,40 @@
+<div class="mt-3">
+    <h6>Lead Details</h6>
+    <hr>
+    <div class="row mb-2">
+        <div class="col-4 text-muted">Lead Number</div>
+        <div class="col-8">{{lead.leadId}}</div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-muted">First Name</div>
+        <div class="col-8">{{lead.firstName}}</div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-muted">Last Name</div>
+        <div class="col-8">{{lead.lastName}}</div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-muted">Email</div>
+        <div class="col-8"><a href="mailto:{{lead.email}}">{{lead.email}}</a></div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-muted">Phone Number</div>
+        <div class="col-8">{{lead.phone}}</div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-muted">Company</div>
+        <div class="col-8">{{lead.company}}</div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-muted">Website</div>
+        <div class="col-8 text-primary"><a href="{{lead.website}}" target="_blank">{{lead.website}}</a></div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-muted">Do No SMS</div>
+        <div class="col-8">{{lead.doNotSMS == true ? 'Yes' : 'No'}}</div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-4 text-muted">Do No Track</div>
+        <div class="col-8">{{lead.doNotTrack == true ? 'Yes' : 'No'}}</div>
+    </div>
+</div>

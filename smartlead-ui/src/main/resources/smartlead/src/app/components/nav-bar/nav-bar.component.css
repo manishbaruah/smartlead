@@ -1,0 +1,29 @@
+.navbar-brand {
+    color: #282828;
+    font-size: 1.7rem;
+    padding: 0;
+}
+
+.navbar-nav .dropdown-menu {
+    left: -50px;
+}
+
+.navbar-nav .nav-link {
+    color: #282828;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.25rem;
+}
+
+.menu-buttons {
+    width: 100%;
+    background-color: #282828;
+}
+
+.menu-buttons .list-inline {
+    padding: 10px 30px;
+}
+
+.modal-dialog {
+    max-width: 600px;
+}

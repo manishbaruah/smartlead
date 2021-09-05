@@ -1,0 +1,10 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container">
+
+    <app-dash-admin *ngIf="isAdmin"></app-dash-admin>
+    <app-dash-user *ngIf="!isAdmin"></app-dash-user>
+
+</div>
+
+<app-footer></app-footer>

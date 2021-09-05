@@ -1,0 +1,60 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container">
+
+    <div class="mb-5">
+        <h2>Projects</h2>
+    </div>
+
+    <div class="mb-3">
+        <form [formGroup]="searchForm" (ngSubmit)="searchProjects()">
+            <div class="row mb-2">
+                <div class="col-5">
+                    <div class="input-group">
+                        <input type="text" formControlName="searchText" class="form-control input-border-dark" placeholder="Search Projects" aria-describedby="searchBtn" required autofocus>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-outline-secondary" id="searchBtn" [disabled]="loading"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Project Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Stage</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Builder</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let project of projects;">
+                    <td>{{project.projectName}}</td>
+                    <td>{{project.projectType.projectTypeName}}</td>
+                    <td>{{project.projectStage.projectStageName}}</td>
+                    <td>{{project.projectLocation}}</td>
+                    <td>{{project.builder.builderName}}</td>
+                    <td>
+                        <button type="button" class="btn mr-3 p-0" (click)="editItem(project.projectId)">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button type="button" class="btn p-0" (click)="delteItem(project.projectId)">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="!projects || projects.length==0">
+                    <td colspan="6">No records found</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<app-footer></app-footer>

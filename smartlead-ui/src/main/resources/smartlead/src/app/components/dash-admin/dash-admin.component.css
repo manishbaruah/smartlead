@@ -1,0 +1,37 @@
+.nav-item a {
+    color: #212529;
+}
+
+.nav-item .active {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.card .close {
+    text-shadow: none;
+    opacity: 1;
+}
+
+.table th,
+td {
+    text-align: center;
+}
+
+.summary {
+    margin-left: 15px;
+    padding: 10px 0 0 0;
+    font-size: 1.15rem;
+}
+
+.summary label {
+    margin-bottom: 0;
+    font-weight: bolder;
+}
+
+.summary p {
+    line-height: 0.7em;
+}
+
+.font-size-bigger {
+    font-size: 1.20rem;
+}

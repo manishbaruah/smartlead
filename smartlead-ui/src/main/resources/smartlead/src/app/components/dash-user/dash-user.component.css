@@ -1,0 +1,32 @@
+.nav-item a {
+    color: #212529;
+}
+
+.nav-item .active {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.card .close {
+    text-shadow: none;
+    opacity: 1;
+}
+
+.card {
+    margin: 0 auto;
+    display: flex;
+    float: none;
+}
+
+.table {
+    width: 80%;
+}
+
+.table th,
+td {
+    text-align: center;
+}
+
+.font-size-bigger {
+    font-size: 1.20rem;
+}

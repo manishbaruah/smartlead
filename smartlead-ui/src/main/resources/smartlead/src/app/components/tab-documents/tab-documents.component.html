@@ -1,0 +1,23 @@
+<div class="mt-3">
+    <h6>Documents</h6>
+    <hr>
+
+    <div class="mb-4" *ngFor="let document of documents; index as i" (mouseover)="onMouseover(i)" (mouseout)="onMouseout(i)">
+        <div class="row">
+            <div class="col">
+                <p class="mb-0 font-weight-bold">{{document.documentName}}</p>
+            </div>
+            <div class="col-2 text-right" [hidden]="!(showItems && i==showItemsIndex)">
+                <button type="button" class="btn p-0" (click)="deleteItem(document.leadDocumentId)">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </div>
+        </div>
+        <p class="mb-0">{{document.documentType.documentTypeName}}</p>
+        <p class="mb-0 text-muted font-size-90 font-italic">
+            Uploaded by {{document.createdBy}} on {{document.createdOn | date:'dd/MM/yy hh:mm a'}}
+        </p>
+    </div>
+    <div *ngIf="!documents || documents.length==0">
+        <p>No documents added</p>
+    </div>

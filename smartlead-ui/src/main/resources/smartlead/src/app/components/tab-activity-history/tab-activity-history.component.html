@@ -1,0 +1,23 @@
+<div class="mt-3">
+    <h6>Activities</h6>
+    <hr>
+
+    <div>
+        <div *ngFor="let actInterval of activityIntervals">
+            <p class="font-weight-bold">{{actInterval.interval}}</p>
+            <div class="row" *ngFor="let activity of actInterval.activities">
+                <div class="col-2 pr-1 font-size-90" style="border-right: 1px solid #dee2e6;">
+                    {{activity.createdOn | date:'dd MMM hh:mm a'}}
+                </div>
+                <div class="col pl-3 pb-5">
+                    <p class="mb-0">{{activity.activityDescription}}</p>
+                    <p class="mb-0 text-muted font-italic font-size-90">Added by {{activity.createdBy}} on {{activity.createdOn | date:'dd MMM yyyy hh:mm a'}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="activityIntervals.length==0">
+            <p>No activities added</p>
+        </div>
+    </div>
+</div>

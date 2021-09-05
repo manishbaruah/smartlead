@@ -1,0 +1,43 @@
+<form [formGroup]="userProfileForm" (ngSubmit)="onSubmit(userProfileForm.value)">
+    <div class="modal-header">
+        <h6 class="modal-title">User Profile</h6>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <ngb-alert *ngIf="alert.message" [type]="alert.type" [dismissible]="false">{{ alert.message }}
+            </ngb-alert>
+            <div class="form-group row mb-3">
+                <label for="firstName" class="col-sm-3 col-form-label">First Name</label>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="firstName" class="form-control" pattern=".{3,}" required autofocus>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <label for="lastName" class="col-sm-3 col-form-label">Last Name</label>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="lastName" class="form-control" pattern=".{3,}" required>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <label for="phone" class="col-sm-3 col-form-label">Phone</label>
+                <div class="col-sm-9">
+                    <input type="string" formControlName="mobile" class="form-control" maxlength="13" pattern=".{10,}" required>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <label for="password" class="col-sm-3 col-form-label">Password / Confirm</label>
+                <div class="input-group col-sm-9">
+                    <input type="password" formControlName="password" class="form-control mr-2" pattern="(?=.*\d)(?=.*[~!@#$%&*-+=])(?=.*[a-z])(?=.*[A-Z]).{6,12}">
+                    <input type="password" formControlName="cpassword" class="form-control" pattern="(?=.*\d)(?=.*[~!@#$%&*-+=])(?=.*[a-z])(?=.*[A-Z]).{6,12}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light light-border" (click)="activeModal.close('Cancel click')">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="loading || !userProfileForm.valid">Save</button>
+    </div>
+</form>

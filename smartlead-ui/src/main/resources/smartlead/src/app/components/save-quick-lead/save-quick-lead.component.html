@@ -1,0 +1,85 @@
+<div class="modal-header">
+    <h6 class="modal-title">Add New Lead</h6>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="saveLeadForm">
+        <ngb-alert *ngIf="alert.message" [type]="alert.type" [dismissible]="false">{{ alert.message }}</ngb-alert>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">First Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="firstName" class="form-control" pattern=".{3,}" required autofocus>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Last Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="lastName" class="form-control" pattern=".{3,}" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Email</label>
+                    <div class="col-sm-9">
+                        <input type="email" formControlName="email" class="form-control" pattern=".{3,}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Phone Number</label>
+                    <div class="col-sm-9">
+                        <international-phone-number formControlName="phone" [maxlength]="15" [defaultCountry]="'in'" [required]="true"></international-phone-number>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Website</label>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="website" class="form-control" pattern=".{7,}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Lead Source</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" formControlName="leadSource" required>
+                            <option value="">Select source...</option>
+                            <option *ngFor="let source of leadSources" [ngValue]="source">
+                                {{source.sourceName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Notes</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" formControlName="notes" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" [disabled]="loading || !saveLeadForm.valid" (click)="saveAndAddNew(saveLeadForm.value)">Save and Add New</button>
+    <button type="button" class="btn btn-primary" [disabled]="loading || !saveLeadForm.valid" (click)="saveAndClose(saveLeadForm.value)">Save and Close</button>
+    <button type="button" class="btn btn-light light-border" (click)="activeModal.close('Cancel click')">Cancel</button>
+</div>

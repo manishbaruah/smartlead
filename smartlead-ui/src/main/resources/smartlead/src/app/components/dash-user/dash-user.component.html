@@ -1,0 +1,35 @@
+<div class="card w-50">
+    <div class="card-header">
+        <span class="card-title">My Task Summary</span>
+        <span class="close"><i class="fas fa-sync-alt" (click)="loadTaskSummary('')"></i></span>
+    </div>
+    <div class="card-body">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#" [ngClass]="{'active': summaryInterval == 'today'}" (click)="loadTaskSummary('today')">Today</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" [ngClass]="{'active': summaryInterval == 'week'}" (click)="loadTaskSummary('week')">This
+                    Week</a>
+            </li>
+        </ul>
+        <table class="table table-borderless table-sm">
+            <thead>
+                <tr>
+                    <th scope="col" class="font-size-bigger">Follow-Up</th>
+                    <th scope="col" class="font-size-bigger">Phone Call</th>
+                    <th scope="col" class="font-size-bigger">Meeting</th>
+                    <th scope="col" class="font-size-bigger">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{taskSummary.followUp.pending}} | {{taskSummary.followUp.total}}</td>
+                    <td>{{taskSummary.phoneCall.pending}} | {{taskSummary.phoneCall.total}}</td>
+                    <td>{{taskSummary.meeting.pending}} | {{taskSummary.meeting.total}}</td>
+                    <td>{{taskSummary.email.pending}} | {{taskSummary.email.total}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

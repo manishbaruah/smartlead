@@ -1,0 +1,10 @@
+.card-header {
+    color: #495057;
+    background-color: #dee2e6 !important;
+    border-color: #dee2e6;
+}
+
+.input-border-dark {
+    border-color: #6c757d;
+    border-right: none;
+}
