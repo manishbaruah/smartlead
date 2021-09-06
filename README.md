@@ -1,5 +1,5 @@
 # Smartlead
-This was a Lead generation software I built for a client when I was doing some freelancing work after my office hours.
+Lead generation software in Java and Angular.
 
 # Steps to run the microservices 
 1. Import the provided SQL file to postgreSQL database under public schema or other schema 
